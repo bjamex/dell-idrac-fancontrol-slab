@@ -8,9 +8,9 @@ fi
 
 ipmitool raw 0x30 0x30 0x01 0x00
 
-CPU0_TEMP=50
-CPU1_TEMP=50
-CPU_TEMP=50
+CPU0_TEMP=60
+CPU1_TEMP=60
+CPU_TEMP=60
 WARNING_TEMP=65
 DANGER_TEMP=75
 
@@ -35,6 +35,7 @@ set_fan_speed() {
 
 while true; do
 	get_cpu_temp
+	sensors | grep 'Package id 1' | awk '{print $4}'
 	set_fan_speed
 	sleep 1
 done
